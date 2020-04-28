@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+button:focus{
+    outline: none !important;
+}
+.wrapped-body{
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 99vh;
+}
+.mat-card {
+    background: white;
+    color: #656565;
+}
+.text-align-center{
+    text-align: center;
+}
+.padding-left-1rem{
+    padding-left: 1rem;
+
+}
+.font-size-11px{
+    font-size: 11px;
+}

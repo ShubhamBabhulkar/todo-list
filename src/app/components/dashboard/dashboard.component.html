@@ -1,0 +1,40 @@
+<div class="row justify-content-md-center align-items-center justify-content-center">
+    <mat-card class="col-md-8">
+        <div class="text-align-center"><h3>To-Do List</h3></div>  
+        <form class="example-form" [formGroup]='todoForm' #f="ngForm" (ngSubmit)="saveTask(f.value)">
+              <mat-form-field class="example-full-width col-md-9">
+                  <input matInput formControlName="taskName" type="text" placeholder="Add a new to-do">
+                  <mat-error *ngIf="getrequired('taskName').touched && getrequired('taskName').invalid">
+                  <mat-error *ngIf="getrequired('taskName').errors.required">Task name required
+                  </mat-error>
+                </mat-error>
+                </mat-form-field>
+                  <span class="example-button-row col-md-2">
+                    <button mat-raised-button color="primary" class="width-100 cursor-pointer margin-top-05rem margin-bottom-05rem" [disabled]="!todoForm.valid">Add</button>
+                  </span>
+              </form>  
+              <div>
+                  <span *ngIf="selectedForDelete.length">
+                      <button matTooltip="Delete selected items" matTooltipPosition="after" mat-icon-button aria-label="delete" (click)='multiDelete()'>
+                          <mat-icon>delete</mat-icon>
+                      </button>
+                  </span>
+                  <mat-card *ngIf="todoItems.length">
+                      <div class="showDelete" *ngFor="let item of todoItems; let indexOfelement=index">
+                        <span>
+                        <mat-checkbox (change)="selectForDelete($event.checked, item)">{{item.taskName}}</mat-checkbox>
+                        </span>
+                        <span class="float-md-right">
+                            <button matTooltip="Delete" matTooltipPosition="after" mat-icon-button aria-label="Example icon-button with a heart icon" (click)='deleteItem(indexOfelement)'>
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </span>
+                        <hr *ngIf="indexOfelement+1 !== todoItems.length">
+                      </div>
+                    </mat-card>
+                    <div *ngIf="!todoItems.length" class="padding-left-1rem">
+                        <span class="font-size-11px">Please add Todo item</span>
+                    </div>
+              </div>
+    </mat-card>
+</div>
